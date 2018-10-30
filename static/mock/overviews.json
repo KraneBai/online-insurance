@@ -1,0 +1,39 @@
+{
+  "status": true,
+  "overviews": {
+    "id": 0,
+    "name": "James",
+    "company": "中国人寿保险股份有限公司吉林省分公司",
+    "date": "2017/12-2018/7",
+    "industry": "销售",
+    "province": "吉林省",
+    "city": "长春市",
+    "center": [
+      {
+        "type": "company",
+        "category": "所属公司",
+        "info": "中国人寿保险股份有限公司吉林省分公司"
+      },
+      {
+        "type": "tel",
+        "category": "手机号",
+        "info": 18543182255
+      },
+      {
+        "type": "position",
+        "category": "职务",
+        "info": "部门经理"
+      },
+      {
+        "type": "job",
+        "category": "分管工作",
+        "info": "人力资源"
+      },
+      {
+        "type": "wechat",
+        "category": "绑定微信",
+        "info": "信号满格"
+      }
+    ]
+  }
+}

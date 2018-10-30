@@ -1,0 +1,182 @@
+{
+  "status": true,
+  "charts": {
+    "all": {
+      "type": "all",
+      "category": "人员概览",
+      "top": {
+        "left": "在册人力",
+        "leftNum": 21457,
+        "right": "行业占比",
+        "rightPer": "10.15%"
+      },
+      "subcategory": "人员变动走势图",
+      "pieData": {
+        "series": [{
+          "center": ["24%", "50%"],
+          "type": "pie",
+          "data": [
+            {
+              "name": "本公司",
+              "y": 90.44
+            },
+            {
+              "name": "其他公司",
+              "y": 9.56,
+              "dataLabels": {
+                "enabled": false
+              }
+            }
+          ]
+        }]
+      },
+      "lineData": {
+        "series": [{
+          "name": "行业",
+          "data": [100, 200, 300, 400, 500, 600, 700, 1000, 500, 600, 700, 1000, 200, 300, 400, 500, 600, 700, 1000, 500, 600, 700, 1000]
+        }, {
+          "name": "公司",
+          "data": [500, 100, 300, 250, 700, 200, 600, 1000, 500, 600, 700, 1000, 200, 300, 400, 500, 600, 700, 1000, 500, 600, 700, 1000]
+        }]
+      },
+      "footerList": [[
+        {
+          "id": 1,
+          "newTit": "新增人数1",
+          "newMount": 1158,
+          "industryTit": "行业占比",
+          "industryMount": "13.51%"
+        },
+        {
+          "id": 2,
+          "newTit": "新增人数2",
+          "newMount": 1158,
+          "industryTit": "行业占比",
+          "industryMount": "13.51%"
+        }],
+        [{
+          "id": 3,
+          "newTit": "新增人数3",
+          "newMount": 1158,
+          "industryTit": "行业占比",
+          "industryMount": "13.51%"
+        },
+        {
+          "id": 1,
+          "newTit": "新增人数1",
+          "newMount": 1158,
+          "industryTit": "行业占比",
+          "industryMount": "13.51%"
+        }],
+        [{
+          "id": 2,
+          "newTit": "新增人数2",
+          "newMount": 1158,
+          "industryTit": "行业占比",
+          "industryMount": "13.51%"
+        },
+        {
+          "id": 3,
+          "newTit": "新增人数3",
+          "newMount": 1158,
+          "industryTit": "行业占比",
+          "industryMount": "13.51%"
+        }]
+      ]
+    },
+    "add": {
+      "type": "add",
+      "category": "新增人员概览",
+      "top": {
+        "left": "新增人数",
+        "leftNum": 1246,
+        "right": "行业占比",
+        "rightPer": "10.15%"
+      },
+      "subcategory": "新增人员走势图",
+      "pieData": {
+        "series": [{
+          "center": ["24%", "50%"],
+          "type": "pie",
+          "data": [
+            {
+              "name": "本公司",
+              "y": 29.56
+            },
+            {
+              "name": "其他公司",
+              "y": 70.44,
+              "dataLabels": {
+                "enabled": false
+              }
+            }
+          ]
+        }]
+      },
+      "lineData": {
+        "series": [{
+          "name": "行业",
+          "data": [100, 200, 300, 400, 500, 600, 700, 1000, 500, 600, 700, 1000, 200, 300, 400, 500, 600, 700, 1000, 500, 600, 700, 1000]
+        }, {
+          "name": "公司",
+          "data": [500, 100, 300, 250, 700, 200, 600, 1000, 500, 600, 700, 1000, 200, 300, 400, 500, 600, 700, 1000, 500, 600, 700, 1000]
+        }]
+      }
+    },
+    "leave": {
+      "type": "leave",
+      "category": "离司人员概览",
+      "top": {
+        "left": "离司人数",
+        "leftNum": 1143,
+        "right": "行业占比",
+        "rightPer": "29.56%"
+      },
+      "subcategory": "离司人员走势图",
+      "pieData": {
+        "series": [{
+          "center": ["24%", "50%"],
+          "type": "pie",
+          "data": [
+            {
+              "name": "本公司",
+              "y": 29.56
+            },
+            {
+              "name": "其他公司",
+              "y": 70.44,
+              "dataLabels": {
+                "enabled": false
+              }
+            }
+          ]
+        }]
+      },
+      "lineData": {
+        "series": [{
+          "name": "行业",
+          "data": [100, 200, 300, 400, 500, 600, 700, 1000, 500, 600, 700, 1000, 200, 300, 400, 500, 600, 700, 1000, 500, 600, 700, 1000]
+        }, {
+          "name": "公司",
+          "data": [500, 100, 300, 250, 700, 200, 600, 1000, 500, 600, 700, 1000, 200, 300, 400, 500, 600, 700, 1000, 500, 600, 700, 1000]
+        }]
+      },
+      "footerList": [
+        [{
+          "id": 1,
+          "newTit": "新增人数",
+          "newMount": 1158,
+          "industryTit": "行业占比",
+          "industryMount": "13.51%"
+        },
+        {
+          "id": 2,
+          "newTit": "新增人数",
+          "newMount": 1158,
+          "industryTit": "行业占比",
+          "industryMount": "13.51%"
+        }]
+      ]
+    }
+  }
+}

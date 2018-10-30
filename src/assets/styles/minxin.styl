@@ -1,0 +1,40 @@
+bg-img(w, h, x, y)
+  background-repeat no-repeat
+  background-size w h
+  background-position x y
+
+$bodyColor = #171d3f
+
+$borderInnerBg = #192749
+
+$borderRadius = 10px
+
+$borderColor = #00ccff
+
+$borderBottomColor = #2a3a94
+
+$txtColor = #1ddcfd
+
+$commonTxtColor = #fff
+
+$orangeTopColor = #ffea00
+$orangeBottomColor = #ff8800
+
+page-style()
+  width 100%
+  height 100%
+  overflow hidden
+  background $bodyColor
+
+text-hidden()
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+
+section-border()
+  color $txtColor
+  background $borderInnerBg
+  &::before
+    border-color $borderColor
+    border-radius $borderRadius
+    box-shadow inset 10px 10px 20px rgba(105, 114, 137, .5), inset -10px -10px 20px rgba(105, 114, 137, .5)
