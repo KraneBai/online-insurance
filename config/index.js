@@ -19,8 +19,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/jmobile': {
-        target: 'http://192.168.1.23/insurance/manageservice/public',
-        // target: 'http://192.168.1.20/insurance/manageservice/public',
+        // target: 'http://192.168.1.23/insurance/manageservice/public',
+        target: 'http://192.168.1.20/insurance/manageservice/public',
         // target: 'http://192.168.1.12/insurance/trunk/manageservice/public/',
         changeOrigin: true,
         pathRewrite: {

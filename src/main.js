@@ -28,31 +28,6 @@ Vue.prototype.common = common
 Vue.prototype.axios = axios
 Vue.prototype.wx = wx
 
-// router.beforeEach((to, from, next) => {
-//   console.log(to)
-//   console.log(from)
-//   console.log(document.URL.match(/\?.*#/))
-//   // URL解析 微回调地址中code存在 ?....# 中
-//   if (document.URL.match(/\?.*#/)) {
-//     let temp = document.URL.match(/\?.*#/)[0]
-//     if (temp.match(/=.*&/)) {
-//       // 解析Code
-//       let code = temp.match(/=.*&/)[0]
-//       code = code.substr(1, code.length) // 去掉 ?
-//       code = code.substr(0, code.length - 1) // 去掉 #
-//       // 重置URL(去掉code参数，避免重复调用)
-//       window.history.pushState({}, 0, document.URL.replace(temp.substr(0, temp.length - 1), ''))
-//       // 通过Code请求获取openId或者用户信息(这里axios是被我封装过的)
-//       // axios.post('/wxLogin/callBack', { code: code}, (data) => {
-//       //   if (data.openId && data.openId !== null) {
-//       //     localStorage.setItem('openId', data.openId)
-//       //   }
-//       // })
-//     }
-//   }
-//   next()
-// })
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

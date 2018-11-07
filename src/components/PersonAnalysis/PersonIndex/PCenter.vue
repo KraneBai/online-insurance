@@ -55,10 +55,15 @@ export default {
         .then((res) => {
           if (res.data.status === 1) {
             localStorage.setItem('uid', '')
-            localStorage.setItem('openId', '')
-            window.location.href = 'http://manageservice-web.loulilouwai.com.cn'
+            localStorage.setItem('openid', '')
+            // 解绑成功跳回登录页
+            window.location.href = 'https://cyrymc.iajl.org'
           } else {
-            this.wx.closeWindow()
+            this.$toast({
+              message: res.data.info,
+              duration: 5000
+            })
+            // this.wx.closeWindow()
           }
         })
     }

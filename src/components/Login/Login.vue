@@ -15,8 +15,8 @@ export default {
   },
   data () {
     return {
-      appid: 'wx9f37f2d6536da1fd',
-      secret: 'a4250c70901d2f1bd0c5c62e1e052ea8'
+      appid: 'wx24ef7a62a93e7e29',
+      secret: 'e907ede2d9150bc894b910c5e74c24a1'
     }
   },
   metaInfo: {
@@ -27,46 +27,47 @@ export default {
   },
   created () {
     this.$indicator.close()
-    // 登录界面时先判断是否有code授权
-    let codeUrl = window.location.search.substr(1)
-    let code = ''
-    if (codeUrl.indexOf('code') > -1) {
-      code = codeUrl.split('&')[0].substr(5)
-    }
-    // 无code, 跳转微信授权, 重定向到此页, 即上个步骤可获取到code
-    if (code === '') {
-      let redirectUri = encodeURI('http://manageservice-web.loulilouwai.com.cn')
-      // snsapi_base / snsapi_userinfo
-      let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + this.appid + '&redirect_uri=' + redirectUri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect'
-      window.location.href = url
-    } else { // 有code
-      this.getToken(code)
-      // if (this.wxnickname === '' && this.wximage === '') {}
-    }
+    // window.addEventListener('popstate', function () {
+    //   history.pushState(null, null, document.URL)
+    // })
+    // let codeUrl = window.location.search.substr(1)
+    // if (!codeUrl.indexOf('code') > -1) {
+    this.getCode()
+    // }
   },
   methods: {
     ...mapMutations(['changeArgs']),
+    // 登录获取code
+    getCode () {
+      // 登录界面时先判断是否有code授权
+      let codeUrl = window.location.search.substr(1)
+      let code = ''
+      if (codeUrl.indexOf('code') > -1) {
+        code = codeUrl.split('&')[0].substr(5)
+      }
+      // 无code, 跳转微信授权, 重定向到此页, 即上个步骤可获取到code
+      if (code === '') {
+        // let redirectUri = encodeURI('http://manageservice-web.loulilouwai.com.cn')
+        let redirectUri = encodeURI('https://cyrymc.iajl.org')
+        // snsapi_base / snsapi_userinfo
+        let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + this.appid + '&redirect_uri=' + redirectUri + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect'
+        window.location.href = url
+      } else { // 有code
+        this.getToken(code)
+      }
+    },
     getToken (code) {
       let url = 'sns/oauth2/access_token?appid=' + this.appid + '&secret=' + this.secret + '&code=' + code + '&grant_type=authorization_code'
       this.axios.get(url)
         .then((res) => {
-          let openId = res.data.openid
-          localStorage.setItem('openId', openId)
+          let openid = res.data.openid
+          localStorage.setItem('tempopenid', openid)
           let accessToken = res.data.access_token
-          // 微信授权后重定向后刷新了当前页面，code没变，请求结果取不到openId和accessToken
-          // if (!openId || !accessToken) {
-          //   this.$toast({
-          //     message: '重新授权',
-          //     duration: 5000
-          //   })
-          //   this.wx.closeWindow()
-          //   return
-          // }
-          this.getWeiXinInfo(accessToken, openId)
+          this.getWeiXinInfo(accessToken, openid)
         })
     },
-    getWeiXinInfo (accessToken, openId) {
-      let url = 'sns/userinfo?access_token=' + accessToken + '&openid=' + openId + '&lang=zh_CN'
+    getWeiXinInfo (accessToken, openid) {
+      let url = 'sns/userinfo?access_token=' + accessToken + '&openid=' + openid + '&lang=zh_CN'
       this.axios.get(url)
         .then((res) => {
           this.changeArgs({wxnickname: res.data.nickname, wximage: res.data.headimgurl})

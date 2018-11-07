@@ -1,1 +1,1 @@
-# online-insurance
+# vue-insuarance

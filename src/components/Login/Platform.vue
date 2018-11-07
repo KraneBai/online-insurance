@@ -1,29 +1,23 @@
 <template>
   <div class="select-platform">
-    <div>
-      <!-- <h2 class="border-bottom">吉林省保险行业管理人员服务平台</h2>
-      <p class="border-bottom" @click="personDetail">人员分析</p>
-      <p class="border-bottom">业务分析</p>
-      <p class="border-bottom">在线教育</p> -->
-      <section class="border" @click="personDetail">人员分析<i class="personnel"></i></section>
-      <section class="border">业务分析<i class="business"></i></section>
-      <section class="border">
-        在线学习<i class="online"></i>
-        <form method="post" name='SendOrderForm' action='http://daxue.iachina.cn/integral/courseEntrance' accept-charset='UTF-8' onsubmit="document.charset='UTF-8'" >
-          <input type="text" name="type" :value="this.eduData.type">
-          <input type="text" name="sourceCode" :value="this.eduData.sourceCode">
-          <input type="text" name="name" :value="this.eduData.name">
-          <input type="text" name="logo" :value="this.eduData.logo">
-          <input type="text" name="trueName" :value="this.eduData.trueName">
-          <input type="text" name="loginName" :value="this.eduData.loginName">
-          <input type="text" name="telephone" :value="this.eduData.telephone">
-          <input type="text" name="email" :value="this.eduData.email">
-          <input type="text" name="checkValue" :value="this.eduData.checkValue">
-          <input type="submit">
-        </form>
-      </section>
-      <section class="border" @click="personInfo">消息通知<i class="message"></i></section>
-    </div>
+    <section class="border" @click="personDetail"><i class="personnel"></i>人员分析</section>
+    <section class="border" @click="business"><i class="business"></i>业务分析</section>
+    <section class="border">
+      <i class="online"></i>在线学习
+      <form method="post" name='SendOrderForm' action='http://daxue.iachina.cn/integral/courseEntrance' accept-charset='UTF-8' onsubmit="document.charset='UTF-8'" >
+        <input type="text" name="type" :value="this.eduData.type">
+        <input type="text" name="sourceCode" :value="this.eduData.sourceCode">
+        <input type="text" name="name" :value="this.eduData.name">
+        <input type="text" name="logo" :value="this.eduData.logo">
+        <input type="text" name="trueName" :value="this.eduData.trueName">
+        <input type="text" name="loginName" :value="this.eduData.loginName">
+        <input type="text" name="telephone" :value="this.eduData.telephone">
+        <input type="text" name="email" :value="this.eduData.email">
+        <input type="text" name="checkValue" :value="this.eduData.checkValue">
+        <input type="submit">
+      </form>
+    </section>
+    <section class="border" @click="personInfo"><i class="message"></i>消息通知</section>
     <do-not-share></do-not-share>
   </div>
 </template>
@@ -43,6 +37,11 @@ export default {
       eduData: {}
     }
   },
+  created () {
+    // window.addEventListener('popstate', function () {
+    //   history.pushState(null, null, document.URL)
+    // })
+  },
   methods: {
     ...mapMutations(['changeArgs']),
     // 人员概览
@@ -52,6 +51,14 @@ export default {
     // 消息通知
     personInfo () {
       this.$router.push({name: 'PersonInfo'})
+    },
+    // 业务分析
+    business () {
+      this.$messagebox({
+        message: '功能建设中',
+        closeOnClickModal: false,
+        showCancelButton: false
+      })
     }
   },
   mounted () {
@@ -92,63 +99,44 @@ export default {
   background linear-gradient(to bottom, #182649, #1d5174)
   color $commonTxtColor
   line-height .9rem
-  div
-    // display grid
-    // grid-template-columns 1fr 1fr
-    // grid-template-rows 1.86rem 1.86rem
-    // column-gap .3rem
+  section
+    position relative
+    margin-bottom .4rem
     display flex
-    flex-wrap wrap
-    justify-content space-between
-    section
-      position relative
-      margin-bottom 3%
-      display flex
-      align-items center
-      justify-content center
-      height 1.5rem
-      width 48.5%
-      section-border()
-      form
+    align-items center
+    justify-content center
+    height 1.7rem
+    width 100%
+    font-size .34rem
+    section-border()
+    form
+      position absolute
+      top 0
+      left 0
+      width 100%
+      height 100%
+      input[type="submit"]
         position absolute
         top 0
         left 0
+        opacity 0
         width 100%
         height 100%
-        input[type="submit"]
-          position absolute
-          top 0
-          left 0
-          opacity 0
-          width 100%
-          height 100%
-        input[type="text"]
-          visibility hidden
-      i
-        margin-left .46rem
-        display inline-block
-        width .56rem
-        height .56rem
-        background-size 100% 100%
-        background-repeat no-repeat
-        &.personnel
-          background-image url(../../assets/images/personnel.png)
-        &.business
-          background-image url(../../assets/images/business.png)
-        &.online
-          background-image url(../../assets/images/online.png)
-        &.message
-          background-image url(../../assets/images/message.png)
-  // h2
-  //   padding-left .3rem
-  //   font-size .28rem
-  //   bg-img(.22rem, .12rem, right .24rem, center)
-  //   background-image url(../../assets/images/arrow_down.png)
-  //   &::before
-  //     border-color $borderBottomColor
-  // p
-  //   padding-left .3rem
-  //   font-size .24rem
-  //   &::before
-  //     border-color $borderBottomColor
+      input[type="text"]
+        visibility hidden
+    i
+      margin-right .46rem
+      display inline-block
+      width .76rem
+      height .76rem
+      background-size 100% 100%
+      background-repeat no-repeat
+      &.personnel
+        background-image url(../../assets/images/personnel.png)
+      &.business
+        background-image url(../../assets/images/business.png)
+      &.online
+        background-image url(../../assets/images/online.png)
+      &.message
+        background-image url(../../assets/images/message.png)
 </style>

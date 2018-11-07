@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import axios from 'axios'
 
+import Welcome from '@/components/Login/Welcome' // 欢迎跳转页
 import Author from '@/components/Login/Author' // 登录
 import Login from '@/components/Login/Login' // 登录
 import Account from '@/components/Login/Account' // 账号登录
@@ -23,35 +23,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: 'Login/Account'
-      // redirect: to => {
-      //   let uid = localStorage.getItem('uid')
-      //   let openId = localStorage.getItem('openId')
-      //   if (uid) {
-      //     alert(uid)
-      //     return '/Platform'
-      //   } else {
-      //     if (openId) {
-      //       alert(openId)
-      //       axios.post('/jmobile/login/openid', {
-      //         openid: openId
-      //       })
-      //         .then((res) => {
-      //           if (res.data.status === 1) {
-      //             localStorage.setItem('uid', res.data.data.user_auth.uid)
-      //             return '/Platform'
-      //           }
-      //         })
-      //     }
-      //     return 'Login/Account'
-      //   }
-      // }
+      name: 'Welcome',
+      component: Welcome
     },
     {
       path: '/Login',
       name: 'Login',
       component: Login,
-      redirect: 'Login/Account',
+      redirect: '/Login/Tel',
       children: [
         {
           path: '/Login/Account',

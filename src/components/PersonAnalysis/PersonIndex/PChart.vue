@@ -109,6 +109,11 @@ export default {
             // 动态生成开始月份
             // pointStart: Date.UTC(2018, this.startmonth - 1, 1), // 2018-01-01开始
             pointIntervalUnit: 'month'
+            // events: {
+            //   legendItemClick: function () {
+            //     return false
+            //   }
+            // }
           }
         },
         xAxis: {
@@ -124,14 +129,14 @@ export default {
             }
           },
           lineColor: '#2c3459',
-          title: {
-            text: '年月',
-            style: {
-              fontSize: '9',
-              color: '#fff'
-            },
-            y: -10
-          },
+          // title: {
+          //   text: '年月',
+          //   style: {
+          //     fontSize: '9',
+          //     color: '#fff'
+          //   },
+          //   y: -10
+          // },
           tickLength: 0, // 刻度线长度
           tickPixelInterval: 50
         },
@@ -178,6 +183,13 @@ export default {
             states: {
               hover: {
                 enabled: false // 划过或点击效果
+              }
+            },
+            point: {
+              events: {
+                legendItemClick: function () {
+                  return false
+                }
               }
             },
             showInLegend: true, // 是否显示图例

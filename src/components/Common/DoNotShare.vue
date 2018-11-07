@@ -21,9 +21,6 @@ export default {
           jsApiList: ['hideAllNonBaseMenuItem'] // 必填，需要使用的JS接口列表 hideMenuItems
         })
         this.wx.ready(() => {
-          // this.wx.hideMenuItems({
-          //   menuList: ['menuItem:share:appMessage', 'menuItem:share:timeline', 'menuItem:share:qq', 'menuItem:share:weiboApp', 'menuItem:share:facebook', 'menuItem:share:QZone']
-          // })
           this.wx.hideAllNonBaseMenuItem()
         })
         this.wx.error(function (res) {})

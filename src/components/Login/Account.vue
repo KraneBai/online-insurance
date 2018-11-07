@@ -25,7 +25,7 @@ export default {
   methods: {
     // 切换登录方式
     toggleWay (type) {
-      this.$router.push({name: 'Tel', query: {type}})
+      this.$router.replace({name: 'Tel', query: {type}})
     },
     // 登录成功选择平台
     selectPlatform () {
@@ -44,8 +44,47 @@ export default {
         .then((res) => {
           this.$indicator.close()
           if (res.data.status === 1) {
-            localStorage.setItem('uid', res.data.data.user_auth.uid)
-            this.$router.push({name: 'Platform'})
+            this.$messagebox({
+              message: '您必须将该账号与微信绑定后才能使用本系统，请点击“允许”完成绑定。点击“取消”退出本系统',
+              closeOnClickModal: false,
+              showCancelButton: true,
+              confirmButtonText: '允许'
+            }).then(action => { // confirm cancel
+              if (action === 'cancel') {
+                this.wx.closeWindow()
+              } else {
+                // let uid = res.data.data.user_auth.uid
+                // localStorage.setItem('uid', uid)
+                // this.$router.replace({name: 'Platform'})
+                let uid = res.data.data.user_auth.uid
+                let openid = localStorage.getItem('tempopenid')
+                this.axios.post('/jmobile/login/up_openid', {
+                  uid,
+                  openid
+                })
+                  .then((res) => {
+                    if (res.data.status === 1) {
+                      localStorage.setItem('uid', uid)
+                      localStorage.setItem('openid', openid)
+                      this.$router.replace({name: 'Platform'})
+                    } else if (res.data.status === 2) {
+                      this.$messagebox({
+                        message: res.data.info,
+                        closeOnClickModal: false,
+                        showCancelButton: false
+                      })
+                    } else {
+                      this.$messagebox({
+                        message: res.data.info,
+                        closeOnClickModal: false,
+                        showCancelButton: false
+                      }).then(action => {
+                        this.wx.closeWindow()
+                      })
+                    }
+                  })
+              }
+            })
           } else {
             this.$toast({
               message: res.data.info,

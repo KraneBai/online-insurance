@@ -1,9 +1,9 @@
 <template>
   <div class="person-header">
     <header class="border">
-      <span>
+      <span @click="centerShow">
         <!-- <img src="../../../assets/images/avatar.png" @click="centerShow"> -->
-        <img :src="this.wximage" @click="centerShow">
+        <img :src="this.wximage">
       </span>
       <dl>
         <dt>{{user.nickname}}</dt>
@@ -75,6 +75,7 @@ export default {
       z-index 99
       margin-right .26rem
       width .94rem
+      min-height .94rem
       img
         width 100%
     dl

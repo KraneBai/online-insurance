@@ -26,7 +26,8 @@ export default {
     Date
   },
   props: {
-    showDate: Boolean
+    showDate: Boolean,
+    industry: Number
   },
   data () {
     return {
@@ -47,19 +48,19 @@ export default {
           {
             id: 0,
             name: '行业'
-          },
-          {
-            id: 1,
-            name: '寿险类型'
-          },
-          {
-            id: 2,
-            name: '财险类型'
-          },
-          {
-            id: 3,
-            name: '中介类型'
           }
+          // {
+          //   id: 1,
+          //   name: '寿险类型'
+          // },
+          // {
+          //   id: 2,
+          //   name: '财险类型'
+          // },
+          // {
+          //   id: 3,
+          //   name: '中介类型'
+          // }
         ]
       },
       times: {
@@ -126,7 +127,6 @@ export default {
       // 点击搜索的时候改变vuex中的值
       let {area, companytype, startyear, startmonth, endyear, endmonth} = this.searchItem
       console.log(this.searchItem)
-      if (this.$refs.areazone.radio.items)
       // 改变vuex的值
       this.changeArgs({areaname: this.careaname, area, companytype, startyear, startmonth, endyear, endmonth})
       // this.$router.go(0) // safari中不好使
@@ -183,6 +183,15 @@ export default {
     // 动态给日期组件和默认参数传递日期
     this.times = Object.assign({}, this.times, {startyear: this.startyear, startmonth: this.startmonth, endyear: this.endyear, endmonth: this.endmonth})
     this.searchItem = Object.assign({}, this.searchItem, this.startmonth, {startyear: this.startyear, startmonth: this.startmonth, endyear: this.endyear, endmonth: this.endmonth})
+    let name = ''
+    if (this.industry === 1) {
+      name = '寿险类型'
+    } else if (this.industry === 2) {
+      name = '财险类型'
+    } else if (this.industry === 3) {
+      name = '中介类型'
+    }
+    this.companies.items.push({id: this.industry, name})
   }
 }
 </script>

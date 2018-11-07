@@ -85,7 +85,7 @@ export default {
     },
     // 切换登录方式
     toggleWay () {
-      this.$router.push({name: 'Account'})
+      this.$router.replace({name: 'Account'})
     },
     // 登录成功选择平台 || 下一步找回密码
     handleNext () {
@@ -119,8 +119,44 @@ export default {
           this.$indicator.close()
           if (res.data.status === 1) {
             if (this.telType === 'telLogin') {
-              localStorage.setItem('uid', res.data.data.user_auth.uid)
-              this.$router.push({name: 'Platform'})
+              this.$messagebox({
+                message: '您必须将该账号与微信绑定后才能使用本系统，请点击“允许”完成绑定。点击“取消”退出本系统',
+                closeOnClickModal: false,
+                showCancelButton: true,
+                confirmButtonText: '允许'
+              }).then(action => { // confirm cancel
+                if (action === 'cancel') {
+                  this.wx.closeWindow()
+                } else {
+                  let uid = res.data.data.user_auth.uid
+                  let openid = localStorage.getItem('tempopenid')
+                  this.axios.post('/jmobile/login/up_openid', {
+                    uid,
+                    openid
+                  })
+                    .then((res) => {
+                      if (res.data.status === 1) {
+                        localStorage.setItem('uid', uid)
+                        localStorage.setItem('openid', openid)
+                        this.$router.replace({name: 'Platform'})
+                      } else if (res.data.status === 2) {
+                        this.$messagebox({
+                          message: res.data.info,
+                          closeOnClickModal: false,
+                          showCancelButton: false
+                        })
+                      } else {
+                        this.$messagebox({
+                          message: res.data.info,
+                          closeOnClickModal: false,
+                          showCancelButton: false
+                        }).then(action => {
+                          this.wx.closeWindow()
+                        })
+                      }
+                    })
+                }
+              })
             } else {
               this.$router.push({name: 'Reset', query: {username: res.data.data.username}})
             }

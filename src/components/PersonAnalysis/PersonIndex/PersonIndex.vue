@@ -35,7 +35,7 @@
       <p-center :user="user"></p-center>
     </Drawer>
     <Drawer :closable="false" v-model="filterShow">
-      <p-filter :showDate="filterShow"></p-filter>
+      <p-filter :showDate="filterShow" :industry="industry" v-if="filterShow"></p-filter>
     </Drawer>
     <do-not-share></do-not-share>
   </div>
@@ -69,11 +69,15 @@ export default {
       leave: {},
       // charts: {}, // 中心图表部分
       centerShow: false,
-      filterShow: false
+      filterShow: false,
+      industry: 0 // 这个人所在的公司类型 1寿险 2财险 3中介, 控制筛选抽屉中的公司类型显示
     }
   },
   computed: {
-    ...mapState(['area', 'areaname', 'companytype', 'startmonth', 'startyear', 'endyear', 'endmonth'])
+    ...mapState(['area', 'areaname', 'companytype', 'startmonth', 'startyear', 'endyear', 'endmonth']),
+    childCompanyType () {
+      return this.industry
+    }
   },
   methods: {
     ...mapMutations(['changeArgs']),
@@ -92,6 +96,7 @@ export default {
         .then((res) => {
           if (res.data.status === 1) {
             this.user = res.data.data
+            this.industry = Number(res.data.data.company_type)
             if (this.areaname === '') {
               // 存放后台返回来的地区名字
               this.changeArgs({areaname: res.data.data.city})
